@@ -37,9 +37,9 @@ const doctorOptions = [
 ];
 
 const genderOptions = [
+  {value: "Any", label: "Any"},
   {value: "Male", label: "Male"},
   {value: "Female", label: "Female"},
-  {value: "Any", label: "Any"}
 ];
 
 const defaultFilterOptions = {
@@ -74,39 +74,57 @@ const genderOptionHandleChange = (e) => {
 }
 
 const minExpHandleChange = (e) => {
-  if (e.target.value === '') return;
+  if (e.target.value === '') {
+    filterOptions.minExp = defaultFilterOptions.minExp;
+    return;
+  }
   if (isNumeric(e.target.value))
     filterOptions.minExp = parseFloat(e.target.value);
 };
 
 const maxExpHandleChange = (e) => {
-  if (e.target.value === '') return;
+  if (e.target.value === ''){
+    filterOptions.maxExp = defaultFilterOptions.maxExp;
+    return;
+  }
   if (isNumeric(e.target.value))
     filterOptions.maxExp = parseFloat(e.target.value);
   console.log(filterOptions);
 };
 
 const minStarHandleChange = (e) => {
-  if (e.target.value === '') return;
+  if (e.target.value === ''){
+    filterOptions.minStar = defaultFilterOptions.minStar;
+    return;
+  }
   if (isNumeric(e.target.value))
     filterOptions.minStar = parseFloat(e.target.value);
 };
 
 const maxStarHandleChange = (e) => {
-  if (e.target.value === '') return;
+  if (e.target.value === ''){
+    filterOptions.maxStar = defaultFilterOptions.maxStar;
+    return;
+  }
   if (isNumeric(e.target.value))
     filterOptions.maxStar = parseFloat(e.target.value);
   console.log(filterOptions);
 };
 
 const minPriceHandleChange = (e) => {
-  if (e.target.value === '') return;
+  if (e.target.value === '') {
+    filterOptions.minPrice = defaultFilterOptions.minPrice;
+    return;
+  }
   if (isNumeric(e.target.value))
     filterOptions.minPrice = parseFloat(e.target.value);
 };
 
 const maxPriceHandleChange = (e) => {
-  if (e.target.value === '') return;
+  if (e.target.value === '') {
+    filterOptions.maxPrice = defaultFilterOptions.maxPrice;
+    return;
+  }
   if (isNumeric(e.target.value))
     filterOptions.maxPrice = parseFloat(e.target.value);
   console.log(filterOptions);
@@ -127,6 +145,12 @@ const dayTimeChange = (e, day, startOrEnd) => {
 
 const App = () => {
   return (
+    <>
+      <header style={styles.header}>
+        <h1 style={{width: "20%"}}>LocalCare</h1>
+          <button style={styles.headerButton}>Home</button>
+          <button style={styles.headerButton}>About</button>
+      </header>
     <div style={styles.container}>
       <div style={styles.filters}>
         {/* <button style={styles.filterButton}>Symptom</button> */}
@@ -150,10 +174,23 @@ const App = () => {
 
       <DoctorCardGrid defaultDoctors={sampleData} filterFunction={filterResults} filterParams={filterOptions}/>
     </div>
+    </>
   );
 };
 
 const styles = {
+  header: {
+    backgroundColor: "#e0e0e0",
+    display: "flex",
+    padding: "10px"
+  },
+  headerButton: {
+    padding: "10px 20px",
+    backgroundColor: "#e0e0e0",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    margin: "10px"
+  },
   container: {
     padding: "20px",
   },
