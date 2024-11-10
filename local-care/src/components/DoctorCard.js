@@ -70,6 +70,7 @@ export default function DoctorCard({ profile, index }){
             
             <div style={styles.profileInfo}>
               <h3>{profile.name}</h3>
+              <h4>{profile.fieldOfStudy}</h4>
               {/* <p>{profile.gender}</p> */}
               <p>Rating: {profile.starVal}</p>
               <p>Location: {profile.location}</p>
